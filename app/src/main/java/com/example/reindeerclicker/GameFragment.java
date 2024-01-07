@@ -20,6 +20,7 @@ import com.example.reindeerclicker.model.RewardType;
 import com.example.reindeerclicker.model.Upgrade;
 import com.example.reindeerclicker.viewmodels.MainViewModel;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 public class GameFragment extends Fragment implements View.OnClickListener {
@@ -64,7 +65,32 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         binding.iVImage.setOnClickListener(this);
         binding.tvScoreNum.setText("" + clickerLogic.getClickCount());
         binding.btnStore.setOnClickListener(this);
+        clickerLogic.eggState.observe(getViewLifecycleOwner(), eggState ->{
+            switch (eggState){
+                case 1:
+                    binding.iVImage.setImageResource(getDrawableId("austrinken"));
+                    break;
+                case 2:
+                    binding.iVImage.setImageResource(getDrawableId("kojake"));
+                    break;
+                case 3:
+                    binding.iVImage.setImageResource(getDrawableId("mafia"));
+                    break;
+                default:
+                    binding.iVImage.setImageResource(getDrawableId("reindeer_8441909_1920"));
+
+            }
+        } );
         return binding.getRoot();
+    }
+    private int getDrawableId(String fileName) {
+        try {
+            Class res = R.drawable.class;
+            Field field = res.getField(fileName);
+            return field.getInt(null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

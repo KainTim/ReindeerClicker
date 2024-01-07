@@ -8,6 +8,10 @@ public class ClickerLogic {
     private double increment = 1;
     private double autoClickAmount = 0;
 
+    public static final Integer EGG_NONE = 0;
+    public MutableLiveData<Integer> _eggState = new MutableLiveData<>(EGG_NONE);
+    public LiveData<Integer> eggState = _eggState;
+
     public void setClickCount(Double clickCount) {
         this.clickCount = clickCount;
     }
@@ -42,4 +46,7 @@ public class ClickerLogic {
         this.increment = increment;
     }
 
+    public void setEggState(Integer state){
+        _eggState.postValue(state);
+    }
 }

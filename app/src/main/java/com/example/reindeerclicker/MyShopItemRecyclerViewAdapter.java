@@ -86,6 +86,7 @@ public class MyShopItemRecyclerViewAdapter extends RecyclerView.Adapter<MyShopIt
                 upgrades.add(mValues.get(getLayoutPosition()).upgrade);
                 logic.setAutoClickAmount(upgrades.stream().filter(upgrade -> upgrade.type== RewardType.AUTO).mapToInt(upgrade -> upgrade.rewardAmount).sum());
                 logic.setIncrement(upgrades.stream().filter(upgrade -> upgrade.type== RewardType.CLICK).mapToInt(upgrade -> upgrade.rewardAmount).sum()+1);
+                upgrades.stream().filter(upgrade -> upgrade.type== RewardType.EGG).mapToInt(upgrade -> upgrade.rewardAmount).max().ifPresent(logic::setEggState);
                 logic.setClickCount(logic.getClickCount()-mValues.get(getLayoutPosition()).upgrade.price);
                 clickCount= logic.getClickCount();
             }

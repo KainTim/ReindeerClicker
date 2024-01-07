@@ -16,6 +16,7 @@ public class MainViewModel extends ViewModel {
     public static final Integer SHOW_MENU = 0;
     public static final Integer SHOW_GAME = 1;
     public static final Integer SHOW_STORE = 2;
+    public static final Integer EGG_NONE = 0;
     private MutableLiveData<Integer> _state = new MutableLiveData<>(0);
     public LiveData<Integer> state = _state;
     private MutableLiveData<List<Upgrade>> _upgradeList = new MutableLiveData<>(new ArrayList<>());
@@ -56,11 +57,14 @@ public class MainViewModel extends ViewModel {
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,2,15,"Gain 2 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,5,50,"Gain 5 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,9,500,"Gain 9 Additionally")));
-        shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,15,2000,"Gain 15 Additionally")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,15,1500,"Gain 15 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,2,100,"Gain +2 Per Second")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,8,600,"Gain +6 Per Second")));
-        shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,10,2500,"Gain +10 Per Second")));
-        shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,20,1,"Gain +20 Per Second")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,10,2000,"Gain +10 Per Second")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,20,3500,"Gain +20 Per Second")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.EGG,1, 4000,"Drink Your Coffee")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.EGG,2, 5000,"Kojake")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.EGG, 3, 6000,"Mafia-Boss")));
         _state.postValue(showID);
     }
 }
