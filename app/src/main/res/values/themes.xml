@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ReindeerClicker" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/my_light_primary</item>
+        <item name="android:colorBackground">@color/my_light_accent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.ReindeerClicker" parent="Base.Theme.ReindeerClicker" />
+
+    <color name="my_light_primary">#F44336</color>
+    <color name="my_light_accent">#B9008905</color>
+</resources>
