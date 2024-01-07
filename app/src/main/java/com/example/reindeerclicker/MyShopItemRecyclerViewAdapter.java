@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.reindeerclicker.callbacks.MyCallback;
 import com.example.reindeerclicker.databinding.FragmentItemBinding;
 import com.example.reindeerclicker.logic.ClickerLogic;
+import com.example.reindeerclicker.model.RewardType;
 import com.example.reindeerclicker.model.ShopItem;
 import com.example.reindeerclicker.model.Upgrade;
 
@@ -45,7 +46,7 @@ public class MyShopItemRecyclerViewAdapter extends RecyclerView.Adapter<MyShopIt
         holder.mBtnBuy.setEnabled(!shopItem.bought);
         holder.mContentView.setText(shopItem.upgrade.description);
         holder.mBtnBuy.setEnabled(!shopItem.bought);
-        if (!(shopItem.upgrade.price<clickCount)){
+        if (!(shopItem.upgrade.price<=clickCount)){
             holder.mBtnBuy.setEnabled(false);
         }
     }
@@ -75,7 +76,7 @@ public class MyShopItemRecyclerViewAdapter extends RecyclerView.Adapter<MyShopIt
         @Override
         public void onClick(View v) {
             if (v.getId()==R.id.btnBuy){
-                if (!(mItem.upgrade.price<clickCount)){
+                if (!(mItem.upgrade.price<=clickCount)){
                     mBtnBuy.setEnabled(false);
                     return;
                 }
@@ -83,6 +84,8 @@ public class MyShopItemRecyclerViewAdapter extends RecyclerView.Adapter<MyShopIt
                 mBtnBuy.setText("Unlocked already");
                 mBtnBuy.setEnabled(false);
                 upgrades.add(mValues.get(getLayoutPosition()).upgrade);
+                logic.setAutoClickAmount(upgrades.stream().filter(upgrade -> upgrade.type== RewardType.AUTO).mapToInt(upgrade -> upgrade.rewardAmount).sum());
+                logic.setIncrement(upgrades.stream().filter(upgrade -> upgrade.type== RewardType.CLICK).mapToInt(upgrade -> upgrade.rewardAmount).sum()+1);
                 logic.setClickCount(logic.getClickCount()-mValues.get(getLayoutPosition()).upgrade.price);
                 clickCount= logic.getClickCount();
             }

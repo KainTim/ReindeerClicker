@@ -4,30 +4,30 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 public class ClickerLogic {
-    private volatile Integer clickCount = 0;
-    private int increment = 1;
-    private int autoClickAmount = 0;
+    private volatile Double clickCount = 0d;
+    private double increment = 1;
+    private double autoClickAmount = 0;
 
-    public void setClickCount(Integer clickCount) {
+    public void setClickCount(Double clickCount) {
         this.clickCount = clickCount;
     }
 
-    public int getAutoClickAmount() {
+    public double getAutoClickAmount() {
         return autoClickAmount;
     }
 
-    public void setAutoClickAmount(int autoClickAmount) {
+    public void setAutoClickAmount(double autoClickAmount) {
         this.autoClickAmount = autoClickAmount;
     }
 
     public int getClickCount() {
-        return clickCount;
+        return (int) clickCount.doubleValue();
     }
 
     public void setClickCount(int clickCount) {
-        this.clickCount=clickCount;
+        this.clickCount= (double) clickCount;
     }
-    public synchronized void increaseBy(int amount){
+    public synchronized void increaseBy(double amount){
         clickCount+=amount;
     }
     public synchronized void increaseByIncrement(){
@@ -35,7 +35,7 @@ public class ClickerLogic {
     }
 
     public int getIncrement() {
-        return increment;
+        return (int) increment;
     }
 
     public void setIncrement(int increment) {

@@ -43,9 +43,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnStart){
-            viewModel.showGame();
-            viewModel.clickerLogic= null;
-            //viewModel.setUpgradeCount(0);
+            viewModel.initAndShow(MainViewModel.SHOW_GAME);
         }
     }
 }

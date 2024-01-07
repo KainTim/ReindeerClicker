@@ -51,16 +51,6 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         viewModel.clickerLogic = clickerLogic;
         List<Upgrade> upgrade = viewModel.upgradeList.getValue();
         if (upgrade != null) {
-            int maxClickAmount = 1;
-            int autoClickAmount = 0;
-            for (Upgrade upgrade1 : upgrade) {
-                if (upgrade1.type == RewardType.CLICK) {
-                    maxClickAmount += upgrade1.rewardAmount;
-                } else if (upgrade1.type == RewardType.AUTO) {
-                    autoClickAmount+=upgrade1.rewardAmount;
-                }
-            }
-            clickerLogic.setIncrement(maxClickAmount);
             try {
                 autoClicker.interrupt();
                 autoClicker.join();
@@ -123,12 +113,12 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         @Override
         public void run() {
             while (true) {
-                Log.d("GAME","Amount: "+clickerLogic.getClickCount()/2);
+                Log.d("GAME","Amount: "+clickerLogic.getAutoClickAmount()/4);
                 int clickCount = clickerLogic.getClickCount();
-                clickerLogic.increaseBy(clickerLogic.getAutoClickAmount()/2);
+                clickerLogic.increaseBy(clickerLogic.getAutoClickAmount()/4);
                 Log.d("GAME", "Difference: "+(clickerLogic.getClickCount()-clickCount));
                 handler.post(() -> binding.tvScoreNum.setText("" + clickerLogic.getClickCount()));
-                if (clickerLogic.getClickCount()>0){
+                if (clickerLogic.getAutoClickAmount()>0){
                     handler.post(()->{
                         ObjectAnimator scaleUpX = ObjectAnimator.ofFloat(binding.iVImage, "scaleX", 1.05f);
                         ObjectAnimator scaleUpY = ObjectAnimator.ofFloat(binding.iVImage, "scaleY", 1.05f);
@@ -156,7 +146,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
                     });
                 }
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     return;
                 }

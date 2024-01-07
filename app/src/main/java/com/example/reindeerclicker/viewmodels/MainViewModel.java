@@ -49,8 +49,7 @@ public class MainViewModel extends ViewModel {
     public void setShopItemList(List<ShopItem> shopItems) {
         this.shopItems = shopItems;
     }
-    public void init(){
-        _state.postValue(SHOW_MENU);
+    public void initAndShow(Integer showID){
         _upgradeList = new MutableLiveData<>(new ArrayList<>());
         clickerLogic = new ClickerLogic();
         shopItems.clear();
@@ -59,8 +58,9 @@ public class MainViewModel extends ViewModel {
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,9,500,"Gain 9 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,15,2000,"Gain 15 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,2,100,"Gain +2 Per Second")));
-        shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,6,600,"Gain +6 Per Second")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,8,600,"Gain +6 Per Second")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,10,2500,"Gain +10 Per Second")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,20,1,"Gain +20 Per Second")));
+        _state.postValue(showID);
     }
 }

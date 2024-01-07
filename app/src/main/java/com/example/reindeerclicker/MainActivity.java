@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        viewModel.init();
+        viewModel.initAndShow(MainViewModel.SHOW_MENU);
         viewModel.state.observe(this, state -> {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             switch (state){
