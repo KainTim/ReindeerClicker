@@ -56,7 +56,7 @@ public class MainViewModel extends ViewModel {
         shopItems.clear();
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,2,15,"Gain 2 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,5,50,"Gain 5 Additionally")));
-        shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,9,500,"Gain 9 Additionally")));
+        shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,7,500,"Gain 9 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.CLICK,15,1500,"Gain 15 Additionally")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,2,100,"Gain +2 Per Second")));
         shopItems.add(new ShopItem(new Upgrade(RewardType.AUTO,8,600,"Gain +6 Per Second")));
